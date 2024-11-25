@@ -31,24 +31,27 @@ install_tools() {
             "subfinder")
                 echo "[+] Installing Subfinder..."
                 # Install Subfinder using Go (as an example)
-                GO111MODULE=on go get -u github.com/projectdiscovery/subfinder/v2/cmd/subfinder
+               go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+               sudo cp ~/go/bin/subfinder /usr/local/bin
                 ;;
             "assetfinder")
                 echo "[+] Installing Assetfinder..."
                 # Install Assetfinder using Go (as an example)
-                GO111MODULE=on go get -u github.com/tomnomnom/assetfinder
+                git clone https://github.com/tomnomnom/assetfinder.git
+                cd assetfinder
+                go build .
+                sudo cp assetfinder /usr/local/bin
                 ;;
             "findomain")
                 echo "[+] Installing Findomain..."
                 # Findomain installation (as an example)
-                wget https://github.com/Findomain/Findomain/releases/download/v7.0.0/findomain-linux -O findomain
-                chmod +x findomain
-                sudo mv findomain /usr/local/bin
+                sudo apt install findomain
                 ;;
             "httprobe")
                 echo "[+] Installing httprobe..."
                 # Install httprobe using Go (as an example)
-                GO111MODULE=on go get -u github.com/tomnomnom/httprobe
+                go install github.com/tomnomnom/httprobe@latest
+                sudo cp ~/go/bin/httprobe /usr/local/bin
                 ;;
             *)
                 echo "[!] Unsupported tool: $tool"
